@@ -1,8 +1,6 @@
 import { connectDB } from "@/util/database";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
@@ -12,7 +10,7 @@ export const authOptions = {
       //1. 로그인페이지 폼 자동생성해주는 코드
       name: "credentials",
       credentials: {
-        name: { label: "Id", type: "text" },
+        id: { label: "Id", type: "text" },
         password: { label: "password", type: "password" },
       },
 
@@ -20,10 +18,8 @@ export const authOptions = {
       //직접 DB에서 아이디,비번 비교하고
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
       async authorize(credentials) {
-        let db = (await connectDB).db("forum");
-        let user = await db
-          .collection("user_cred")
-          .findOne({ name: credentials.name });
+        let db = (await connectDB).db("coin");
+        let user = await db.collection("user").findOne({ id: credentials.id });
         if (!user) {
           console.log("해당 이름은 없음");
           return null;
@@ -68,7 +64,7 @@ export const authOptions = {
 
   // @@@pages추가
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
   },
 
   // secret: "qwer1234",
