@@ -4,6 +4,5 @@ import Logout from "../LogoutBtn";
 
 export default async function Main() {
   let session = await getServerSession(authOptions);
-  console.log(session);
   return <>{session ? <Logout /> : <div>로그인 후 사용해주세요</div>}</>;
 }

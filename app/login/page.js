@@ -29,7 +29,7 @@ export default function Login() {
 
   return (
     <div className="login-form">
-      <h4>LOGIN</h4>
+      <h4>로그인</h4>
       <input
         id="id"
         name="id"
@@ -50,7 +50,7 @@ export default function Login() {
         }}
         autoFocus={true}
       ></input>
-      <button onClick={handleSubmit}>로그인</button>
+      <button onClick={handleSubmit}>확인</button>
     </div>
   );
 }

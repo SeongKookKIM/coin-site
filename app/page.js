@@ -7,7 +7,6 @@ import Main from "./main/page";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <div className="home">
       {session ? (
