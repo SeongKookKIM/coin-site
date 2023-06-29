@@ -19,8 +19,6 @@ export default function Movie() {
       });
   }, []);
 
-  console.log(movie);
-
   return (
     <div className="movie-wrapper">
       <h3>영화 추천</h3>
