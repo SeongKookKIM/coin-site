@@ -7,13 +7,6 @@ export default async function Layout({ children }) {
   let session = await getServerSession(authOptions);
   return (
     <div className="main-wrapper">
-      <nav>
-        <ul>
-          <li>
-            <Link href="/main">코인</Link>
-          </li>
-        </ul>
-      </nav>
       <div className="top-nav">
         <nav>
           <ul>
