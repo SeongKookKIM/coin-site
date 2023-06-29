@@ -8,8 +8,9 @@ export default function Logout() {
   return (
     <button
       onClick={() => {
-        router.push("/");
-        signOut();
+        signOut({
+          callbackUrl: "/",
+        });
       }}
     >
       로그아웃
