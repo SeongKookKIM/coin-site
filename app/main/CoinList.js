@@ -29,13 +29,21 @@ export default function CoinList() {
   useEffect(() => {
     if (!isFetching && result.data) {
       setCoinState(result.data);
-      console.log("변경");
     }
   }, [isFetching, result.data]);
 
   return (
     <div className="coin-wrapper">
-      <h4>실시간 코인 거래량</h4>
+      <h4>
+        실시간 코인 거래량
+        <span
+          onClick={() => {
+            location.reload();
+          }}
+        >
+          🔁
+        </span>
+      </h4>
       <table className="coin-table">
         <thead>
           <tr>
