@@ -1,38 +1,41 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useIsFetching, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function CoinList() {
   let [num, setNum] = useState(10);
+  let [coinState, setCoinState] = useState();
+  let isFetching = useIsFetching();
 
-  let result = useQuery(["coin"], () => {
-    return axios
-      .get("https://api.coinpaprika.com/v1/tickers?quotes=KRW")
-      .then((res) => {
-        return res.data.slice(0, num);
-      })
-      .catch((err) => {
-        console.log("에러");
-      });
+  let result = useQuery(
+    ["coin"],
+    () => {
+      return axios
+        .get("https://api.coinpaprika.com/v1/tickers?quotes=KRW")
+        .then((res) => {
+          return res.data.slice(0, num);
+        })
+        .catch((err) => {
+          console.log("에러");
+        });
+    },
     {
-      staleTime: 2000;
+      staleTime: 2000,
     }
-  });
+  );
+
+  useEffect(() => {
+    if (!isFetching && result.data) {
+      setCoinState(result.data);
+      console.log("변경");
+    }
+  }, [isFetching, result.data]);
 
   return (
     <div className="coin-wrapper">
-      <h4>
-        실시간 코인 거래량
-        <span
-          onClick={() => {
-            result.refetch();
-          }}
-        >
-          🔄️
-        </span>
-      </h4>
+      <h4>실시간 코인 거래량</h4>
       <table className="coin-table">
         <thead>
           <tr>
@@ -47,9 +50,9 @@ export default function CoinList() {
           </tr>
         </thead>
         <tbody>
-          {result.data && (
+          {coinState && (
             <>
-              {result.data.map((coin, i) => {
+              {coinState.map((coin, i) => {
                 return (
                   <tr key={i}>
                     <td>{coin.rank}</td>
