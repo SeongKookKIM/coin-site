@@ -14,5 +14,5 @@ export default function Clock() {
     };
   }, []);
 
-  return <p className="time">{clock.toLocaleString().slice(12, 23)}</p>;
+  return <p className="time">{clock.toLocaleString().slice(12, 25)}</p>;
 }

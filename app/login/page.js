@@ -28,8 +28,8 @@ export default function Login() {
   };
 
   return (
-    <div className="login-box">
-      <h2>LOGIN</h2>
+    <div className="login-form">
+      <h4>LOGIN</h4>
       <input
         id="id"
         name="id"
