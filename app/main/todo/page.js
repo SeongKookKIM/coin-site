@@ -1,34 +1,19 @@
+import AddMemo from "./AddMemo";
 import Memo from "./Memo";
+import Popup from "./Popup";
 
-export default function Todo() {
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+
+export default async function Todo() {
+  let session = await getServerSession(authOptions);
+
   return (
     <div className="todo-list">
-      <div class="popup">
-        <div class="content">
-          <header>
-            <p>노트 작성</p>
-            <span>X</span>
-          </header>
-          <form action="#">
-            <div class="row title">
-              <label>제목</label>
-              <input type="text" />
-            </div>
-            <div class="row descripttion">
-              <label>내용</label>
-              <input type="text"></input>
-            </div>
-            <button>ADD Note</button>
-          </form>
-        </div>
-      </div>
+      <Popup sessionName={session.user.name} />
       <h3>메모장</h3>
       <ul>
-        <li className="add-memo">
-          <div>+</div>
-          <p>메모 추가</p>
-        </li>
-
+        <AddMemo />
         <Memo />
       </ul>
     </div>
