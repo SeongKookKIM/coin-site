@@ -7,13 +7,20 @@ export default function Gallery() {
   let [perPage, setPerPage] = useState(15);
   let [currentPage, setCurrentPage] = useState(1);
   let [searchTerm, setSearchTerm] = useState(null);
+  let [apiUrl, setApiUrl] = useState(
+    "https://api.pexels.com/v1/curated?page=1&per_page=15"
+  );
 
   let [imgUrl, setImgUrl] = useState();
+
+  console.log(searchTerm);
+  console.log(apiUrl);
 
   useEffect(() => {
     let movieChart = axios
       .get(
-        `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`,
+        // `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`
+        apiUrl,
         {
           headers: {
             Authorization:
@@ -27,7 +34,7 @@ export default function Gallery() {
       .catch((err) => {
         console.log("에러");
       });
-  }, []);
+  }, [perPage, currentPage, searchTerm]);
 
   function handleDownload(img) {
     fetch(img)
@@ -49,12 +56,52 @@ export default function Gallery() {
       });
   }
 
+  function handleMore() {
+    setCurrentPage(currentPage + 1);
+    setPerPage(perPage + 15);
+    let apiURL = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
+    let apiSearchURL = searchTerm
+      ? `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`
+      : apiURL;
+    setApiUrl(apiSearchURL);
+  }
+
+  function handleSearch(e) {
+    if (e.target.value === "") return setSearchTerm(null);
+
+    setCurrentPage(1);
+    setPerPage(15);
+    setSearchTerm(e.target.value);
+    console.log(searchTerm);
+    let apiURL = `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`;
+    setApiUrl(apiURL);
+  }
+
   return (
     <div className="gallery-wrapper">
       <div className="search">
         <h3>사진 검색</h3>
         <div>
-          <input type="text" placeholder="이미지 찾기(영문검색)"></input>
+          <input
+            type="text"
+            placeholder="이미지 찾기(영문검색)"
+            onChange={(e) => {
+              handleSearch(e);
+            }}
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter") {
+            //     handleSearch(e);
+            //   }
+            // }}
+          ></input>
+          <button
+            onClick={() => {
+              handleMore();
+            }}
+            className="confirm-btn"
+          >
+            확인
+          </button>
         </div>
       </div>
 
@@ -65,9 +112,9 @@ export default function Gallery() {
                 return (
                   <li className="card" key={i}>
                     <img src={it.src.large2x} alt="img"></img>
-                    <div class="details">
-                      <div class="photographer">
-                        <span>${it.photographer}</span>
+                    <div className="details">
+                      <div className="photographer">
+                        <span>{it.photographer}</span>
                       </div>
                       <button
                         onClick={() => {
@@ -82,7 +129,14 @@ export default function Gallery() {
               })
             : "Loading..."}
         </ul>
-        <button className="load-more">더 보기</button>
+        <button
+          className="load-more"
+          onClick={() => {
+            handleMore();
+          }}
+        >
+          더 보기
+        </button>
       </div>
     </div>
   );
