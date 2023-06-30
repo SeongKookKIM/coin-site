@@ -11,7 +11,7 @@ export default async function Todo() {
   return (
     <div className="todo-list">
       <Popup sessionName={session.user.name} />
-      <h3>메모장</h3>
+      <h3>공동 메모장</h3>
       <ul>
         <AddMemo />
         <Memo />

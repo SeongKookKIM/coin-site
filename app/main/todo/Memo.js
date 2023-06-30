@@ -1,23 +1,26 @@
-export default function Memo() {
+import { connectDB } from "@/util/database";
+import MemoSetting from "./MemoSetting";
+
+export default async function Memo() {
+  const db = (await connectDB).db("coin");
+  let result = await db.collection("memo").find().toArray();
+
   return (
-    <li className="memo">
-      <div className="memo-details">
-        <p>Title</p>
-        <span>내용@@@@@@@@</span>
-      </div>
-      <div className="memo-bottom">
-        <p>작성자</p>
-        <div className="memo-settings">
-          <span>2023년 6월 30일</span>
-          <span className="settings-origin">...</span>
-          <div className="settings">
-            <ol>
-              <li>수정</li>
-              <li>삭제</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </li>
+    <>
+      {result.map((it, i) => {
+        return (
+          <li className="memo">
+            <div className="memo-details">
+              <p>{it.title}</p>
+              <span>{it.description}</span>
+            </div>
+            <div className="memo-bottom">
+              <p>{it.name}</p>
+              <MemoSetting date={it.date} />
+            </div>
+          </li>
+        );
+      })}
+    </>
   );
 }
