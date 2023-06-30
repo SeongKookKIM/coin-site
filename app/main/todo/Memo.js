@@ -16,7 +16,7 @@ export default async function Memo() {
             </div>
             <div className="memo-bottom">
               <p>{it.name}</p>
-              <MemoSetting date={it.date} />
+              <MemoSetting date={it.date} result={result} i={i} />
             </div>
           </li>
         );

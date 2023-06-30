@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function MemoSetting({ date }) {
+export default function MemoSetting({ date, result, i }) {
   let [active, setActive] = useState(false);
 
   return (
@@ -25,7 +25,16 @@ export default function MemoSetting({ date }) {
         <div className="settings">
           <ol>
             <li>수정</li>
-            <li>삭제</li>
+            <li
+              onClick={(e) => {
+                fetch("/api/delete", {
+                  method: "POST",
+                  body: result[i]._id,
+                });
+              }}
+            >
+              삭제
+            </li>
           </ol>
         </div>
       ) : (
