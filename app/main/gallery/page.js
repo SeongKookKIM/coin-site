@@ -13,9 +13,6 @@ export default function Gallery() {
 
   let [imgUrl, setImgUrl] = useState();
 
-  console.log(searchTerm);
-  console.log(apiUrl);
-
   useEffect(() => {
     let movieChart = axios
       .get(

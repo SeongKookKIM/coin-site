@@ -366,6 +366,7 @@ a {
 .movie-wrapper ul li p {
   font-size: 0.8rem;
   padding: 0 0.5rem;
+  color: #333;
 }
 
 /* @@@ Gallery */
@@ -471,4 +472,174 @@ a {
   outline: none;
   border-radius: 5px;
   color: #333;
+  cursor: pointer;
+}
+
+/* @@@ To-Do */
+.todo-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+.todo-list h3 {
+  text-align: center;
+  font-size: 3rem;
+  color: aliceblue;
+  margin-top: 150px;
+}
+.todo-list > ul {
+  width: 90%;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 265px);
+  gap: 15px;
+}
+.todo-list > ul > li {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  height: 250px;
+  list-style: none;
+  border-radius: 5px;
+  padding: 15px 20px 20px;
+}
+.add-memo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.add-memo div {
+  width: 40%;
+  aspect-ratio: 1/1;
+  border: 1px dashed black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: #333;
+  cursor: pointer;
+}
+.add-memo p {
+  font-size: 1.3rem;
+  color: #333;
+}
+.memo {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+.memo .memo-details {
+  max-height: 165px;
+  overflow-y: hidden;
+}
+.memo p {
+  font-size: 22px;
+  font-weight: 500;
+}
+.memo span {
+  color: #575757;
+  font-size: 16px;
+  display: block;
+  margin-top: 5px;
+}
+.memo .memo-bottom p {
+  font-size: 1rem;
+  color: #333;
+}
+.memo-settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.memo-settings span {
+  font-size: 1rem;
+  color: #333;
+}
+
+.settings {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  width: 80px;
+  overflow: hidden;
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.2s ease;
+}
+.settings.add {
+  transform: scale(1);
+}
+.settings ol {
+  width: 100%;
+  height: 100%;
+}
+.settings ol li {
+  width: 100%;
+  text-align: center;
+  color: #333;
+  padding: 0.4rem 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+}
+.settings ol li:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.popup {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.content {
+  max-width: 400px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0.3rem;
+}
+.content header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 2px solid #333;
+}
+.content header p {
+  font-size: 2rem;
+  padding-left: 10px;
+  color: #333;
+}
+.content header span {
+  font-size: 1.5rem;
+  padding-right: 10px;
+  cursor: pointer;
+  color: #333;
+}
+.content form {
+  width: 100%;
+  padding-top: 1rem;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+  color: #333;
+}
+.title input {
+  height: 30px;
+}
+.descripttion {
 }
