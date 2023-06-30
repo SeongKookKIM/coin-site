@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 import Date from "./date";
 import Clock from "./Clock";
 import Btn from "./Btn";
-import Main from "./main/page";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
