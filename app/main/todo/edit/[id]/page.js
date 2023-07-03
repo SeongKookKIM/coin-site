@@ -1,3 +1,4 @@
+import BackBtn from "@/app/BackBtn";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
@@ -42,6 +43,11 @@ export default async function Edit(props) {
             defaultValue={`${new Date().getFullYear()}년 ${
               new Date().getMonth() + 1
             }월 ${new Date().getDate()}일`}
+          ></input>
+          <input
+            style={{ display: "none" }}
+            name="_id"
+            defaultValue={result._id.toString()}
           ></input>
           <button type="submit">수정하기</button>
         </form>
