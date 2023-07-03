@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function MemoSetting({ date, result, i }) {
   let [active, setActive] = useState(false);
+  let router = useRouter();
 
   return (
     <div
@@ -26,11 +28,16 @@ export default function MemoSetting({ date, result, i }) {
           <ol>
             <li>수정</li>
             <li
-              onClick={(e) => {
+              onClick={() => {
                 fetch("/api/delete", {
                   method: "POST",
                   body: result[i]._id,
+                }).then((res) => {
+                  if (res.status == 400) {
+                    window.alert("삭제 권한이 없습니다.");
+                  }
                 });
+                router.refresh();
               }}
             >
               삭제

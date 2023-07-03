@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 export default async function Popup({ sessionName }) {
   function handleFade() {
     document.querySelector(".popup").classList.remove("unfade");
