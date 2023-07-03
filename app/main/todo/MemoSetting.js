@@ -26,7 +26,13 @@ export default function MemoSetting({ date, result, i }) {
       {active ? (
         <div className="settings">
           <ol>
-            <li>수정</li>
+            <li
+              onClick={() => {
+                router.push(`/main/todo/edit/${result[i]._id}`);
+              }}
+            >
+              수정
+            </li>
             <li
               onClick={() => {
                 fetch("/api/delete", {
