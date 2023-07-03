@@ -85,11 +85,6 @@ export default function Gallery() {
             onChange={(e) => {
               handleSearch(e);
             }}
-            // onKeyDown={(e) => {
-            //   if (e.key === "Enter") {
-            //     handleSearch(e);
-            //   }
-            // }}
           ></input>
           <button
             onClick={() => {
