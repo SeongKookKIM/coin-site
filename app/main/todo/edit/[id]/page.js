@@ -3,6 +3,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
 import { getServerSession } from "next-auth";
+import Close from "./Close";
 
 export default async function Edit(props) {
   let session = await getServerSession(authOptions);
@@ -17,6 +18,7 @@ export default async function Edit(props) {
       <div className="content">
         <header>
           <p>메모 수정</p>
+          <Close />
         </header>
         <form action="/api/edit" method="POST">
           <div className="row title">
