@@ -63,15 +63,18 @@ export default function Gallery() {
     setApiUrl(apiSearchURL);
   }
 
+  // useEffect(() => {
+  //   setCurrentPage(1);
+  //   setPerPage(15);
+
+  //   console.log(searchTerm);
+  //   let apiURL = `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`;
+  //   setApiUrl(apiURL);
+  // }, [searchTerm]);
+
   function handleSearch(e) {
     if (e.target.value === "") return setSearchTerm(null);
-
-    setCurrentPage(1);
-    setPerPage(15);
     setSearchTerm(e.target.value);
-    console.log(searchTerm);
-    let apiURL = `https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`;
-    setApiUrl(apiURL);
   }
 
   return (
